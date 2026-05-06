@@ -1,0 +1,16 @@
+name: ACT-ML
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.12.2
+  - scikit-learn=1.3.2
+  - scikit-plot=0.3.7
+  - scikit-survival=0.22.2
+  - scipy=1.11.4
+  - numpy=1.26.4
+  - pandas=2.2.1
+  - matplotlib
+  - matplotlib-base
+  - openpyxl=3.1.2
+
