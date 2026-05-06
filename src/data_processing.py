@@ -16,7 +16,7 @@ def preprocess_data(
     ----------
     data : pandas.DataFrame
         Input data table.
-    timepoint : int or float, default=1
+    timepoint : int, default=1
         Timepoint to include in the analysis.
     file_name_col : str, default="file_name"
         Name of the column containing sample/file identifiers.
