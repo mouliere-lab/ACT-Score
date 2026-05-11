@@ -36,6 +36,7 @@ def train_validate(
     timepoint,
     file_name_col,
     outcome_col,
+    cohort_col,
     cv,
     cv_strategy,
     scoring_method,
@@ -101,12 +102,13 @@ def train_validate(
             load_data(input_file_path),
             timepoint=timepoint,
             file_name_col=file_name_col,
-            outcome_col=outcome_col)
+            outcome_col=outcome_col,
+            cohort_col=cohort_col)
             
         data = data.assign(prediction_proba_1=np.nan, prediction=np.nan)
             
         # Prepare training data
-        train_set = data[data['split'] == 'Training'].sample(frac=1, random_state=rs).reset_index(drop=True)
+        train_set = data[data[cohort_col] == 'Training'].sample(frac=1, random_state=rs).reset_index(drop=True)
         target_train = np.array([1 if v == "No" else 0 for v in train_set[outcome_col]])
 
         # Train the classifier
@@ -167,7 +169,7 @@ def train_validate(
 
 
         # Calculate and save performance metrics for the validation cohort
-        val_data = data[data['split'] == 'Validation']
+        val_data = data[data[cohort_col] == 'Validation']
 
         if threshold == "Default":
             selected_threshold = 0.5
@@ -191,8 +193,9 @@ def main():
     parser.add_argument('--features', nargs='+', type=str, required=True, help='List of feature names')
     parser.add_argument('--classifier_name', type=str, required=True, help='Name of the classifier')
     parser.add_argument('--timepoint',type=int,default=1,help="Timepoint to include in the analysis. Default: 1")
-    parser.add_argument('--file_name_col', type=str, default='file_name', help='Name of the sample/file identifier column')
-    parser.add_argument('--outcome_col', type=str, default='2Y_PFS', help='Name of the outcome column')
+    parser.add_argument('--file_name_col', type=str, default='subject_id', help='Name of the sample/file identifier column')
+    parser.add_argument('--outcome_col', type=str, default='2y_ttp', help='Name of the outcome column')
+    parser.add_argument('--cohort_col',type=str,default="cohort",help="Name of the training/validation cohort column")
     parser.add_argument('--cv', type=int, default=4, help='Number of folds for cross-validation')
     parser.add_argument('--cv_strategy', type=str, required=True, help='Cross-validation strategy')
     parser.add_argument('--scoring_method', type=str, required=True, help='Scoring method for optimizing the classifier')
@@ -211,6 +214,7 @@ def main():
         args.timepoint,
         args.file_name_col,
         args.outcome_col,
+        args.cohort_col,
         args.cv,
         args.cv_strategy,
         args.scoring_method,
@@ -231,8 +235,9 @@ if __name__ == "__main__":
 #   --features feature_1 feature_2 \
 #   --classifier_name Logistic_Regression \
 #   --timepoint 1 \
-#   --file_name_col file_name \
-#   --outcome_col 2Y_PFS \
+#   --file_name_col subject_id \
+#   --outcome_col 2y_ttp \
+#   --cohort_col cohort \
 #   --cv 5 \
 #   --cv_strategy StratifiedKFold \
 #   --scoring_method roc_auc \
