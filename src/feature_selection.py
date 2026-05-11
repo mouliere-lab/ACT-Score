@@ -93,7 +93,7 @@ def run_elastic_net_feature_selection(
     """
     
     output_dir = output_dir + "/feature_selection"
-    os.makedirs(output_dir+"/feature_selection", exist_ok=True)
+    os.makedirs(output_dir, exist_ok=True)
 
     data = load_data(input_file)
 
