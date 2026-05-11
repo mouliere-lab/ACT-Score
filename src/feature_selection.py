@@ -15,8 +15,6 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
 from src.load_data import load_data
-from src.data_processing import preprocess_data
-
 
 def load_feature_names(feature_file, feature_col="feature"):
     """
@@ -99,12 +97,14 @@ def run_elastic_net_feature_selection(
 
     data = load_data(input_file)
 
-    data = preprocess_data(
-        data=data,
-        timepoint=timepoint,
-        outcome_col=outcome_col,
-        file_name_col=file_name_col,
-    )
+    # Keep only samples with available binary outcome labels.
+    data = data[data[outcome_col].isin(["Yes", "No"])]
+        
+    # Filter the data to include only training and validation samples.
+    data = data[data["split"].isin(["Training", "Validation"])]
+
+    # Keep only samples from the selected timepoint.      
+    data = data[data["timepoint"] == timepoint]
 
     feature_names = load_feature_names(
         feature_file=feature_file,
