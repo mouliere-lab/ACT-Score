@@ -50,9 +50,8 @@ def run_elastic_net_feature_selection(
     random_states=10,
     timepoint=1,
     outcome_col="2Y_PFS",
-    file_name_col="file_name",
     feature_col="feature",
-    n_jobs=-1,
+    n_jobs=16,
 ):
     """
     Perform Elastic Net-based feature selection using training data only.
