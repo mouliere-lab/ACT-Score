@@ -135,9 +135,9 @@ if __name__ == "__main__":
 #
 # Example for DELFI:
 # python analysis/feature_selection.py \
-#   --feature_group DELFI \
+#   --feature_group DELFI-FTK \
 #   --input_file data/example_input.csv \
-#   --feature_file data/feature_lists/DELFI_features.csv \
+#   --feature_file data/feature_lists/DELFI-FTK_features.csv \
 #   --output_dir results \
 #   --min_times_selected 5 \
 #   --random_states 10 \
