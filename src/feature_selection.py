@@ -77,11 +77,9 @@ def run_elastic_net_feature_selection(
         Timepoint to include in the analysis.
     outcome_col : str, default="2Y_PFS"
         Name of the outcome column. Expected values are "Yes" and "No".
-    file_name_col : str, default="file_name"
-        Name of the sample/file identifier column.
     feature_col : str, default="feature"
         Name of the column containing feature names in the feature file.
-    n_jobs : int, default=-1
+    n_jobs : int, default=16
         Number of parallel jobs for GridSearchCV.
 
     Returns
