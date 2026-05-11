@@ -6,11 +6,12 @@ import logging
 def preprocess_data(
     data,
     timepoint=1,
-    outcome_col="2Y_PFS",
-    file_name_col="file_name"
+    outcome_col="2y_ttp",
+    file_name_col="subject_id",
+    cohort_col="split",
 ):
     """
-    Preprocess the input data by filtering samples and sorting by file name.
+    Preprocess the input data by filtering samples and sorting by sample/subject ID.
 
     Parameters
     ----------
@@ -18,16 +19,18 @@ def preprocess_data(
         Input data table.
     timepoint : int, default=1
         Timepoint to include in the analysis.
-    file_name_col : str, default="file_name"
-        Name of the column containing sample/file identifiers.
     outcome_col : str, default="2Y_PFS"
         Name of the outcome column. Expected values are "Yes" and "No".
+    file_name_col : str, default="subject_id"
+        Name of the column containing sample or subject identifiers.
+    cohort_col : str, default="split"
+        Name of the column containing training/validation cohort labels.
 
     Returns
     -------
     pandas.DataFrame
         Processed data containing only samples with valid outcome labels,
-        training/validation split, and the selected timepoint.
+        training/validation cohort labels, and the selected timepoint.
     """
     
     try:
@@ -36,7 +39,7 @@ def preprocess_data(
         data = data[data[outcome_col].isin(["Yes", "No"])]
         
         # Filter the data to include only training and validation samples.
-        data = data[data["split"].isin(["Training", "Validation"])]
+        data = data[data[cohort_col].isin(["Training", "Validation"])]
 
         # Keep only samples from the selected timepoint.      
         data = data[data["timepoint"] == timepoint]
