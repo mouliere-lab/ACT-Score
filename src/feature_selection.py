@@ -93,7 +93,8 @@ def run_elastic_net_feature_selection(
         Saves run-level results, selected-feature counts, filtered selected features,
         and all selected features across random states.
     """
-
+    
+    output_dir = output_dir + "/feature_selection"
     os.makedirs(output_dir+"/feature_selection", exist_ok=True)
 
     data = load_data(input_file)
