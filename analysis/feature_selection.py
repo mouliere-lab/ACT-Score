@@ -33,7 +33,7 @@ def main():
         "--feature_group",
         type=str,
         required=True,
-        choices=["LIONHEART", "DELFI"],
+        choices=["LIONHEART", "DELFI-FTK"],
         help="Feature group name used as the output prefix.",
     )
 
