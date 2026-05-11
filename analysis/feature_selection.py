@@ -133,7 +133,7 @@ if __name__ == "__main__":
 #   --feature_col feature \
 #   --n_jobs 16
 #
-# Example for DELFI:
+# Example for DELFI-FTK:
 # python analysis/feature_selection.py \
 #   --feature_group DELFI-FTK \
 #   --input_file data/example_input.csv \
