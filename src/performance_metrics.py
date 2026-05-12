@@ -15,7 +15,7 @@ from sklearn.metrics import (
     roc_curve,
 )
 
-def performance_metrics(data_set, optimal_threshold, outcome_col="2Y_PFS"):
+def performance_metrics(data_set, optimal_threshold, outcome_col="2y_ttp"):
 
     """
     Calculate classification performance metrics.
@@ -26,7 +26,7 @@ def performance_metrics(data_set, optimal_threshold, outcome_col="2Y_PFS"):
         Dataset containing outcome labels and prediction probabilities.
     optimal_threshold : float
         Threshold used to convert predicted probabilities into binary predictions.
-    outcome_col : str, default="2Y_PFS"
+    outcome_col : str, default="2y_ttp"
         Name of the outcome column. Expected values are "Yes" and "No".
 
     Returns
