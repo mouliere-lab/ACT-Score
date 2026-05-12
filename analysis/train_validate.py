@@ -37,6 +37,8 @@ def train_validate(
     file_name_col,
     outcome_col,
     cohort_col,
+    training_label,
+    validation_label,
     cv,
     cv_strategy,
     scoring_method,
@@ -61,6 +63,12 @@ def train_validate(
             Name of the column containing sample/file identifiers.
         outcome_col : str
             Name of the outcome column. Expected values are "Yes" and "No".    
+        cohort_col : str
+            Name of the column containing training/validation cohort labels.
+        training_label : str
+            Label used for the training cohort.
+        validation_label : str
+            Label used for the validation cohort.    
         cv: int
            Number of cross-validation folds.  
         cv_strategy : str
@@ -103,12 +111,21 @@ def train_validate(
             timepoint=timepoint,
             file_name_col=file_name_col,
             outcome_col=outcome_col,
-            cohort_col=cohort_col)
+            cohort_col=cohort_col,
+            training_label=training_label,
+            validation_label=validation_label)
             
         data = data.assign(prediction_proba_1=np.nan, prediction=np.nan)
             
         # Prepare training data
-        train_set = data[data[cohort_col] == 'Training'].sample(frac=1, random_state=rs).reset_index(drop=True)
+        train_set = data[data[cohort_col] == training_label].sample(frac=1, random_state=rs).reset_index(drop=True)
+
+        if train_set.empty:
+            raise ValueError(
+                f"No training samples found after filtering. "
+                f"Check cohort_col={cohort_col}, training_label={training_label}, "
+                f"timepoint={timepoint}, and outcome_col={outcome_col}.")
+        
         target_train = np.array([1 if v == "No" else 0 for v in train_set[outcome_col]])
 
         # Train the classifier
@@ -169,7 +186,13 @@ def train_validate(
 
 
         # Calculate and save performance metrics for the validation cohort
-        val_data = data[data[cohort_col] == 'Validation']
+        val_data = data[data[cohort_col] == validation_label]
+
+        if val_data.empty:
+            raise ValueError(
+                f"No validation samples found after filtering. "
+                f"Check cohort_col={cohort_col}, validation_label={validation_label}, "
+                f"timepoint={timepoint}, and outcome_col={outcome_col}.")
 
         if threshold == "Default":
             selected_threshold = 0.5
@@ -195,7 +218,9 @@ def main():
     parser.add_argument('--timepoint',type=int,default=1,help="Timepoint to include in the analysis. Default: 1")
     parser.add_argument('--file_name_col', type=str, default='subject_id', help='Name of the sample/file identifier column')
     parser.add_argument('--outcome_col', type=str, default='2y_ttp', help='Name of the outcome column')
-    parser.add_argument('--cohort_col',type=str,default="cohort",help="Name of the training/validation cohort column")
+    parser.add_argument('--cohort_col', type=str,default='cohort', help='Name of the training/validation cohort column')
+    parser.add_argument('--training_label', type=str, default='A', help='Label used for the training cohort')
+    parser.add_argument('--validation_label', type=str, default='B', help='Label used for the validation cohort')
     parser.add_argument('--cv', type=int, default=4, help='Number of folds for cross-validation')
     parser.add_argument('--cv_strategy', type=str, required=True, help='Cross-validation strategy')
     parser.add_argument('--scoring_method', type=str, required=True, help='Scoring method for optimizing the classifier')
@@ -215,6 +240,8 @@ def main():
         args.file_name_col,
         args.outcome_col,
         args.cohort_col,
+        args.training_label,
+        args.validation_label,
         args.cv,
         args.cv_strategy,
         args.scoring_method,
@@ -238,6 +265,8 @@ if __name__ == "__main__":
 #   --file_name_col subject_id \
 #   --outcome_col 2y_ttp \
 #   --cohort_col cohort \
+#   --training_label A \
+#   --validation_label B \
 #   --cv 5 \
 #   --cv_strategy StratifiedKFold \
 #   --scoring_method roc_auc \
