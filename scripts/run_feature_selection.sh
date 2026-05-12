@@ -2,8 +2,14 @@
 
 set -euo pipefail
 
+echo "============================================================"
+echo "Starting ACT feature selection"
+echo "============================================================"
+
+echo "Activating conda environment: ACT-ML"
+
 # Activate environment
-conda activate ACT-ML
+source activate ACT-ML
 
 # Go to repository root
 # Replace this with the path to your cloned ACT-score repository.
@@ -23,6 +29,29 @@ FEATURE_COL="feature"
 N_JOBS=16
 RANDOM_STATES=10
 
+echo "Checking input files"
+if [ ! -f "$INPUT_FILE" ]; then
+    echo "Error: input file not found: $INPUT_FILE"
+    exit 1
+fi
+
+if [ ! -f "$FEATURE_LIST_DIR/LIONHEART_features.csv" ]; then
+    echo "Error: LIONHEART feature file not found: $FEATURE_LIST_DIR/LIONHEART_features.csv"
+    exit 1
+fi
+
+if [ ! -f "$FEATURE_LIST_DIR/DELFI-FTK_features.csv" ]; then
+    echo "Error: DELFI-FTK feature file not found: $FEATURE_LIST_DIR/DELFI-FTK_features.csv"
+    exit 1
+fi
+
+mkdir -p "$OUTPUT_DIR"
+
+echo "============================================================"
+echo "Running LIONHEART feature selection"
+echo "============================================================"
+
+
 # LIONHEART feature selection
 python analysis/feature_selection.py \
   --feature_group LIONHEART \
@@ -39,6 +68,14 @@ python analysis/feature_selection.py \
   --validation_label "$VALIDATION_LABEL" \
   --n_jobs "$N_JOBS"
 
+
+echo "Finished LIONHEART feature selection"
+
+echo "============================================================"
+echo "Running DELFI-FTK feature selection"
+echo "============================================================"
+
+
 # DELFI-FTK feature selection
 python analysis/feature_selection.py \
   --feature_group DELFI-FTK \
@@ -54,3 +91,11 @@ python analysis/feature_selection.py \
   --training_label "$TRAINING_LABEL" \
   --validation_label "$VALIDATION_LABEL" \
   --n_jobs "$N_JOBS"
+
+echo "Finished DELFI-FTK feature selection"
+
+echo "============================================================"
+echo "Feature selection completed successfully"
+echo "Outputs saved in: $OUTPUT_DIR/feature_selection"
+echo "============================================================"
+  
