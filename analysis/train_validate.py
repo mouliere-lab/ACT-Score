@@ -231,8 +231,8 @@ def main():
     parser.add_argument('--nr_jobs', type=int, required=True, help='Number of parallel jobs')
     parser.add_argument('--scale_status', type=lambda x: x.lower() == 'true', required=True, help='Whether to scale or not')
         
-
     args = parser.parse_args()
+    
     train_validate(
         args.features,
         args.classifier_name,
