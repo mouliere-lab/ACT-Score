@@ -1,6 +1,5 @@
 import os
 import sys
-import glob
 import logging
 import numpy as np
 import pandas as pd
@@ -31,8 +30,9 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 def predict_new_samples(
     classifier_name,
-    outcome_col="2Y_PFS",
-    file_name_col="file_name",
+    timepoint,
+    file_name_col,
+    outcome_col,
     results_path,
     input_file_path,
     output_predictions_path,
@@ -42,7 +42,6 @@ def predict_new_samples(
     scoring_method,
     random_states,
     scale_status,
-    timepoint=None,
 ):
     """
     Apply saved models from multiple random states to new samples.
@@ -55,10 +54,12 @@ def predict_new_samples(
     ----------
     classifier_name : str
         Name of the classifier.
-    outcome_col : str, default="2Y_PFS"
-        Name of the outcome column. Expected values are "Yes" and "No".
+    timepoint : int, optional
+        If provided, only samples from this timepoint are included.   
     file_name_col : str, default="file_name"
-        Name of the sample/file identifier column.    
+        Name of the sample/file identifier column.     
+    outcome_col : str, default="2y_ttp"
+        Name of the outcome column. Expected values are "Yes" and "No".      
     results_path : str
         Path to the directory containing saved model results.
     input_file_path : str
@@ -77,8 +78,6 @@ def predict_new_samples(
         Number of random-state models to average.
     scale_status : bool
         Whether feature scaling was used during model training.
-    timepoint : int, optional
-        If provided, only samples from this timepoint are included.
 
     Returns
     -------
@@ -184,20 +183,21 @@ def main():
     )
 
     parser.add_argument("--classifier_name", type=str, required=True, help="Name of the classifier")
+    parser.add_argument("--timepoint", type=int, default=1, help="Timepoint to filter")
+    parser.add_argument("--file_name_col", type=str, default="subject_id", help="Name of the sample/file identifier column")
+    parser.add_argument("--outcome_col", type=str, default="2y_ttp", help="Name of the outcome column")
     parser.add_argument("--results_path", type=str, required=True, help="Path to saved model results")
     parser.add_argument("--input_file_path", type=str, required=True, help="Path to input feature CSV")
     parser.add_argument("--output_predictions_path", type=str, required=True, help="Path to save averaged predictions")
     parser.add_argument("--output_performance_path", type=str, default=None, help="Path to save performance metrics")
-
     parser.add_argument("--cv", type=int, required=True, help="Number of CV folds")
     parser.add_argument("--cv_strategy", type=str, required=True, help="CV strategy used during training")
     parser.add_argument("--scoring_method", type=str, required=True, help="Scoring method used during training")
     parser.add_argument("--rs", type=int, required=True, help="Number of random-state models")
     parser.add_argument("--scale_status", type=lambda x: x.lower() == "true", required=True, help="Whether scaling was used")
 
-    parser.add_argument("--timepoint", type=int, default=None, help="Optional timepoint to filter")
-    parser.add_argument("--outcome_col", type=str, default="2Y_PFS", help="Name of the outcome column")
-    parser.add_argument("--file_name_col", type=str, default="file_name", help="Name of the sample/file identifier column")
+    
+    
 
     args = parser.parse_args()
 
@@ -225,6 +225,9 @@ if __name__ == "__main__":
 # Example:
 # python analysis/predict_new_samples.py \
 #   --classifier_name Logistic_Regression \
+#   --timepoint 1 \
+#   --file_name_col subject_id \
+#   --outcome_col 2y_ttp \
 #   --results_path results/Final_results_scale_False \
 #   --input_file_path data/example_new_samples.csv \
 #   --output_predictions_path results/new_sample_predictions.csv \
@@ -233,7 +236,4 @@ if __name__ == "__main__":
 #   --cv_strategy StratifiedKFold \
 #   --scoring_method roc_auc \
 #   --rs 10 \
-#   --scale_status False \
-#   --timepoint 3 \
-#   --outcome_col 2Y_PFS \
-#   --file_name_col file_name
+#   --scale_status False
