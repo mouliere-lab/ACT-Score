@@ -46,14 +46,14 @@ def run_elastic_net_feature_selection(
     feature_file,
     output_dir,
     output_prefix,
-    min_times_selected=5,
+    min_times_selected,
+    feature_col="feature"
     random_states=10,
     timepoint=1,
     outcome_col="2y_ttp",
     cohort_col="cohort",
     training_label="A",
     validation_label="B",
-    feature_col="feature",
     n_jobs=16,
 ):
     """
@@ -64,16 +64,18 @@ def run_elastic_net_feature_selection(
 
     Parameters
     ----------
+    output_prefix : str
+        Prefix used for output file names, for example "LIONHEART" or "DELFI".
     input_file : str
         Path to input CSV file containing features and metadata.
     feature_file : str
         Path to CSV file containing feature names.
     output_dir : str
         Directory where output files will be saved.
-    output_prefix : str
-        Prefix used for output file names, for example "LIONHEART" or "DELFI".
-    min_times_selected : int, default=5
-        Minimum number of random-seed runs in which a feature must be selected.
+    min_times_selected : int
+        Minimum number of random-seed runs in which a feature must be selected.    
+    feature_col : str, default="feature"
+        Name of the column containing feature names in the feature file.    
     random_states : int, default=10
         Number of random seeds to use.
     timepoint : int, default=1
@@ -86,8 +88,6 @@ def run_elastic_net_feature_selection(
         Label used for the training cohort.
     validation_label : str, default="B"
         Label used for the validation cohort.    
-    feature_col : str, default="feature"
-        Name of the column containing feature names in the feature file.
     n_jobs : int, default=16
         Number of parallel jobs for GridSearchCV.
 
