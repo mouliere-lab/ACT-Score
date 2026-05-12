@@ -3,7 +3,7 @@
 set -euo pipefail
 
 # Activate environment
-source activate ACT-ML
+conda activate ACT-ML
 
 # Go to repository root
 cd /path/to/ACT-score
