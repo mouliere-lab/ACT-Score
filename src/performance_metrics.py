@@ -89,7 +89,7 @@ def performance_metrics(data_set, optimal_threshold, outcome_col="2y_ttp"):
         accuracy = accuracy_score(target_labels, y_pred)
         
         # Calculate the F1 score.
-        f1 = f1_score(target_labels, y_pred , zero_division=0)
+        f1 = f1_score(target_labels, y_pred, zero_division=0)
         
         # Store all calculated metrics in the results DataFrame, rounding them to two decimal places.
         results.loc[0, 'Precision (Positive Predictive Value)'] = round(precision, 2)
