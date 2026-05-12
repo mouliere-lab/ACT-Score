@@ -42,12 +42,12 @@ def load_feature_names(feature_file, feature_col="feature"):
 
 
 def run_elastic_net_feature_selection(
+    output_prefix,
     input_file,
     feature_file,
     output_dir,
-    output_prefix,
     min_times_selected,
-    feature_col="feature"
+    feature_col="feature",
     random_states=10,
     timepoint=1,
     outcome_col="2y_ttp",
@@ -207,7 +207,7 @@ def run_elastic_net_feature_selection(
 
     run_results_df = pd.DataFrame(all_run_results)
 
-    selection_summary = (pd.DataFrame(selection_counter.items(),columns=["feature", "times_selected"])
+    selection_summary = (pd.DataFrame(selection_counter.items(), columns=["feature", "times_selected"])
         .sort_values(["times_selected", "feature"], ascending=[False, True]).reset_index(drop=True))
 
     selected_features_min_count = selection_summary[selection_summary["times_selected"] >= min_times_selected].copy()
