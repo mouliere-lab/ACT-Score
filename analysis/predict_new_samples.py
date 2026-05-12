@@ -56,7 +56,7 @@ def predict_new_samples(
         Name of the classifier.
     timepoint : int, optional
         If provided, only samples from this timepoint are included.   
-    file_name_col : str, default="file_name"
+    file_name_col : str, default="subject_id"
         Name of the sample/file identifier column.     
     outcome_col : str, default="2y_ttp"
         Name of the outcome column. Expected values are "Yes" and "No".      
@@ -155,7 +155,10 @@ def predict_new_samples(
         merged_data['average_prediction_proba_1'] >= mean_threshold, 1, 0
     )
 
-    os.makedirs(os.path.dirname(output_predictions_path), exist_ok=True)
+    output_predictions_dir = os.path.dirname(output_predictions_path)
+    if output_predictions_dir:
+        os.makedirs(output_predictions_dir, exist_ok=True)
+        
     merged_data.to_csv(output_predictions_path, index=False)
     logging.info(f"Saved averaged predictions to {output_predictions_path}")
 
@@ -170,7 +173,10 @@ def predict_new_samples(
             outcome_col=outcome_col,
         )
 
-        os.makedirs(os.path.dirname(output_performance_path), exist_ok=True)
+        output_performance_dir = os.path.dirname(output_performance_path)
+        if output_performance_dir:
+            os.makedirs(output_performance_dir, exist_ok=True)
+            
         performance.to_csv(output_performance_path, index=False)
         logging.info(f"Saved performance metrics to {output_performance_path}")
 
