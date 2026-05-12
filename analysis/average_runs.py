@@ -44,6 +44,8 @@ def average_results(
         classifier_name (str): Name of the classifier to analyze.
         timepoint (int): Timepoint used in the analysis.
         outcome_col (str): Name of the outcome column.
+        cohort_col (str): Name of the cohort column.
+        validation_label (str): Label used for the validation cohort.
         results_path (str): Path to the directory containing the results data for different random states.
         cv (int): number of cross-validation folds
         random_states (int): Number of random state iterations to consider for averaging.
