@@ -6,6 +6,7 @@ set -euo pipefail
 conda activate ACT-ML
 
 # Go to repository root
+# Replace this with the path to your cloned ACT-score repository.
 cd /path/to/ACT-score
 
 # User settings
