@@ -10,8 +10,8 @@ cd /path/to/ACT-score
 
 # User settings
 INPUT_FILE="data/input_feature_table.csv"
-OUTPUT_DIR="results"
 FEATURE_LIST_DIR="data/feature_lists"
+OUTPUT_DIR="results"
 
 TIMEPOINT=1
 OUTCOME_COL="2y_ttp"
