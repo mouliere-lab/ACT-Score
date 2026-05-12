@@ -20,9 +20,9 @@ classifiers=(
 
 # Feature-list CSV files.
 # These files should contain a column called "feature".
-core_feature_file="core_features.csv"
-lionheart_feature_file="data/feature_lists/LIONHEART_features.csv"
-delfi_feature_file="data/feature_lists/DELFI-FTK_features.csv"
+core_feature_file="data/feature_lists/core_features.csv"
+lionheart_feature_file="results/feature_selection/LIONHEART_selected_features_min1.csv"
+delfi_feature_file="results/feature_selection/DELFI-FTK_selected_features_min5.csv"
 
 # Read features from the CSV files
 
@@ -59,6 +59,11 @@ features=(
     "${lionheart_features[@]}"
     "${delfi_features[@]}"
 )
+
+if [ "${#features[@]}" -eq 0 ]; then
+    echo "Error: no features were loaded. Check feature-list CSV files."
+    exit 1
+fi
 
 # Inputs
 INPUT_FILE="data/input_feature_table.csv"
