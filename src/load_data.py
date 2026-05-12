@@ -25,7 +25,7 @@ def load_data(file_path):
     """
     
     try:
-        # Attempt to read the Excel file into a pandas DataFrame.
+        # Attempt to read the CSV file into a pandas DataFrame.
         data = pd.read_csv(file_path)
         
         # Return the loaded data if successful.
