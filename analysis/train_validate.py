@@ -215,7 +215,7 @@ def main():
     parser = argparse.ArgumentParser(description='Perform training and validation for a given classifier.')
     parser.add_argument('--features', nargs='+', type=str, required=True, help='List of feature names')
     parser.add_argument('--classifier_name', type=str, required=True, help='Name of the classifier')
-    parser.add_argument('--timepoint',type=int,default=1,help="Timepoint to include in the analysis. Default: 1")
+    parser.add_argument('--timepoint', type=int,default=1,help="Timepoint to include in the analysis. Default: 1")
     parser.add_argument('--file_name_col', type=str, default='subject_id', help='Name of the sample/file identifier column')
     parser.add_argument('--outcome_col', type=str, default='2y_ttp', help='Name of the outcome column')
     parser.add_argument('--cohort_col', type=str,default='cohort', help='Name of the training/validation cohort column')
@@ -229,7 +229,7 @@ def main():
     parser.add_argument('--path_to_save_results', type=str, required=True, help='Path to save results')
     parser.add_argument('--rs', type=int, required=True, help='Random state')
     parser.add_argument('--nr_jobs', type=int, required=True, help='Number of parallel jobs')
-    parser.add_argument('--scale_status',type=lambda x: x.lower() == 'true',required=True,help='Whether to scale or not')
+    parser.add_argument('--scale_status', type=lambda x: x.lower() == 'true', required=True, help='Whether to scale or not')
         
 
     args = parser.parse_args()
