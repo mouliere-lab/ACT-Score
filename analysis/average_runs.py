@@ -26,6 +26,8 @@ def average_results(
     classifier_name,
     timepoint,
     outcome_col,
+    cohort_col,
+    validation_label,
     results_path,
     cv,
     cv_strategy,
@@ -56,7 +58,7 @@ def average_results(
 
 
     # Define paths
-    results_path_classifier = os.path.join(results_path,classifier_name)
+    results_path_classifier = os.path.join(results_path, classifier_name)
     results_path_classifier_avg = os.path.join(results_path_classifier, 'Average')
     os.makedirs(results_path_classifier_avg, exist_ok=True)
 
@@ -182,8 +184,13 @@ def average_results(
     merged_data.to_csv(avg_file_path, index=False)
     logging.info(f"Saved averaged predictions to {avg_file_path}")
 
-    # Compute and save performance metrics for validation sets
-    val_data = merged_data[merged_data['split'] == 'Validation'].copy()
+    # Compute and save performance metrics for the validation cohort.
+    val_data = merged_data[merged_data[cohort_col] == validation_label].copy()
+
+    if val_data.empty:
+        raise ValueError(
+            f"No validation samples found. "
+            f"Check cohort_col={cohort_col} and validation_label={validation_label}.")
     
     # If performance_metrics expects a column called prediction_proba_1,
     # create it from the average column
@@ -202,7 +209,7 @@ def average_results(
     perf_metrics_val.to_csv(perf_metrics_file_path, index=False)
     logging.info(f"Saved performance metrics for timepoint {timepoint} to {perf_metrics_file_path}")
     
-    #Average feature importances
+    # Average feature importances
     if classifier_name == "Logistic_Regression":
         if feature_importance_dfs:
             all_importances = pd.concat(feature_importance_dfs, ignore_index=True)
@@ -271,15 +278,17 @@ def main():
    
     parser = argparse.ArgumentParser(description='Calculate the average performance metrics over different runs.')
     parser.add_argument('--classifier', type=str, required=True, help='Name of the classifier')
-    parser.add_argument("--timepoint", type=int, default=1, help="Timepoint used in the analysis")
-    parser.add_argument("--outcome_col", type=str, default="2Y_PFS", help="Name of the outcome column")
+    parser.add_argument('--timepoint', type=int, default=1, help='Timepoint used in the analysis')
+    parser.add_argument('--outcome_col', type=str, default='2y_ttp', help='Name of the outcome column')    
+    parser.add_argument('--cohort_col', type=str, default='cohort', help='Name of the cohort column')
+    parser.add_argument('--validation_label', type=str, default='B', help='Label used for the validation cohort')
     parser.add_argument('--results-path', type=str, required=True, help='Path to the directory containing the results')
     parser.add_argument('--cv', type=int, required=True, help='Number of cross-validation folds')
     parser.add_argument('--cv_strategy', type=str, required=True, help='Cross-validation strategy')
     parser.add_argument('--scoring_method', type=str, required=True, help='Scoring method for optimizing the classifier')
     parser.add_argument('--threshold', type=str, required=True, help='Classification threshold')
     parser.add_argument('--rs', type=int, required=True, help='Number of random states')
-    parser.add_argument('--scale_status',type=lambda x: x.lower() == 'true',required=True,help='Whether to scale or not')
+    parser.add_argument('--scale_status', type=lambda x: x.lower() == 'true', required=True, help='Whether to scale or not')
 
     
     args = parser.parse_args()
@@ -287,6 +296,8 @@ def main():
         args.classifier,
         args.timepoint,
         args.outcome_col,
+        args.cohort_col,
+        args.validation_label,
         args.results_path,
         args.cv,
         args.cv_strategy,
@@ -304,7 +315,9 @@ if __name__ == "__main__":
 # python analysis/average_runs.py \
 #   --classifier Logistic_Regression \
 #   --timepoint 1 \
-#   --outcome_col 2Y_PFS \
+#   --outcome_col 2y_ttp \
+#   --cohort_col cohort \
+#   --validation_label B \
 #   --results-path results/ \
 #   --cv 5 \
 #   --cv_strategy StratifiedKFold \
