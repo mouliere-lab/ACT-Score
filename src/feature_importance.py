@@ -72,16 +72,13 @@ def save_feature_importances(importances, features, train_set,results_path_class
     try:
         
         if classifier_name == 'Logistic_Regression':
-            imp= pd.DataFrame({
+            imp = pd.DataFrame({
                 "Feature": features,
-                "Coefficient": np.round(importances, 3),
-                "Std": train_set[features].std().values
-            })
+                "Coefficient": importances,
+                "Std": train_set[features].std().values})
             
             imp["Coef_x_Std"] = np.abs(imp["Coefficient"] * imp["Std"])
-            
             imp["Direction"] = np.where(imp["Coefficient"] > 0, "Positive", "Negative")
-            
             
             # If features were scaled, rank by absolute coefficient.
             # If features were not scaled, rank by coefficient multiplied by feature standard deviation.
@@ -89,13 +86,16 @@ def save_feature_importances(importances, features, train_set,results_path_class
             if scale_status:
                 imp["Abs_Coefficient"] = np.abs(imp["Coefficient"])
                 imp = imp.sort_values("Abs_Coefficient", ascending=False)
+
+                imp["Abs_Coefficient"] = imp["Abs_Coefficient"].round(3)
             else:
                 imp = imp.sort_values("Coef_x_Std", ascending=False)
+                
+            imp["Coefficient"] = imp["Coefficient"].round(3)
+            imp["Std"] = imp["Std"].round(3)
+            imp["Coef_x_Std"] = imp["Coef_x_Std"].round(3)
             
-            imp.to_csv(
-                os.path.join(results_path_classifier, f'{classifier_name}_feature_importances_{title}.csv'),
-                index=False
-            )
+            imp.to_csv(os.path.join(results_path_classifier, f'{classifier_name}_feature_importances_{title}.csv'),index=False)
 
  
     except Exception as e:
