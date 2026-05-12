@@ -57,7 +57,7 @@ def predict_new_samples(
     timepoint : int, optional
         If provided, only samples from this timepoint are included.   
     file_name_col : str, default="subject_id"
-        Name of the sample/file identifier column.     
+        Name of the sample/subject identifier column.     
     outcome_col : str, default="2y_ttp"
         Name of the outcome column. Expected values are "Yes" and "No".      
     results_path : str
