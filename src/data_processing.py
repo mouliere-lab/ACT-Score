@@ -8,7 +8,9 @@ def preprocess_data(
     timepoint=1,
     outcome_col="2y_ttp",
     file_name_col="subject_id",
-    cohort_col="split",
+    cohort_col="cohort",
+    training_label="A",
+    validation_label="B"
 ):
     """
     Preprocess the input data by filtering samples and sorting by sample/subject ID.
@@ -19,12 +21,16 @@ def preprocess_data(
         Input data table.
     timepoint : int, default=1
         Timepoint to include in the analysis.
-    outcome_col : str, default="2Y_PFS"
+    outcome_col : str, default="2y_ttp"
         Name of the outcome column. Expected values are "Yes" and "No".
     file_name_col : str, default="subject_id"
         Name of the column containing sample or subject identifiers.
-    cohort_col : str, default="split"
+    cohort_col : str, default="cohort"
         Name of the column containing training/validation cohort labels.
+    training_label : str, default="A"
+        Label used for the training cohort.
+    validation_label : str, default="B"
+        Label used for the validation cohort.
 
     Returns
     -------
@@ -39,7 +45,7 @@ def preprocess_data(
         data = data[data[outcome_col].isin(["Yes", "No"])]
         
         # Filter the data to include only training and validation samples.
-        data = data[data[cohort_col].isin(["Training", "Validation"])]
+        data = data[data[cohort_col].isin([training_label, validation_label])]
 
         # Keep only samples from the selected timepoint.      
         data = data[data["timepoint"] == timepoint]
