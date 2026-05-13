@@ -7,8 +7,6 @@ Before installing the ACT-score pipeline, install one of the following:
 - [Miniconda](https://docs.conda.io/en/latest/miniconda.html)
 - [Anaconda](https://docs.anaconda.com/free/anaconda/install/index.html)
 
-Alternatively, the pipeline can also be installed using a standard Python virtual environment.
-
 ### 1. Clone the repository
 
 ```sh
