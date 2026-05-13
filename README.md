@@ -90,7 +90,7 @@ Example:
 ```csv
 feature
 Gini
-ichorCNA n=0.5
+ichorCNA
 FrEIA_score
 100–120
 120–140
@@ -273,7 +273,7 @@ The `Average/` folder contains averaged predictions and averaged performance met
 You can also run one classifier manually:
 
 ```bash
-python analysis/train_validate.py   --features Gini "ichorCNA n=0.5" FrEIA_score "100–120" "120–140" "180–200"   --classifier_name Logistic_Regression   --timepoint 1   --file_name_col subject_id   --outcome_col 2y_ttp   --cohort_col cohort   --training_label A   --validation_label B   --cv 5   --cv_strategy StratifiedKFold   --scoring_method roc_auc   --threshold Optimal   --input_file_path data/input_feature_table.csv   --path_to_save_results results/ACT_score_scale_True   --rs 1   --nr_jobs 16   --scale_status True
+python analysis/train_validate.py   --features Gini "ichorCNA" FrEIA_score "100–120" "120–140" "180–200"   --classifier_name Logistic_Regression   --timepoint 1   --file_name_col subject_id   --outcome_col 2y_ttp   --cohort_col cohort   --training_label A   --validation_label B   --cv 5   --cv_strategy StratifiedKFold   --scoring_method roc_auc   --threshold Optimal   --input_file_path data/input_feature_table.csv   --path_to_save_results results/ACT_score_scale_True   --rs 1   --nr_jobs 16   --scale_status True
 ```
 
 Then average results across random seeds:
