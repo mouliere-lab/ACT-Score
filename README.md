@@ -6,15 +6,15 @@ ACT score is a machine learning framework for early outcome prediction in large 
 
 ACT stands for:
 
-- **A**: Aberrations, represented by genomic tumor fraction estimated
-- **C**: Composition of cfDNA fragments including fragment size and genome-wide fragmentation features
+- **A**: Aberrations, represented by genomic tumor fraction
+- **C**: Composition of cfDNA fragments, including fragment size and genome-wide fragmentation features
 - **T**: Terminal motif analyses, including fragment-end motif diversity and motif-based scores
 
 The pipeline is designed to integrate genomic and fragmentomic features from a single on-treatment plasma sample, typically collected after one cycle of therapy, to identify patients at higher risk of progression.
 
-ACT integrates multiple cfDNA feature classes, including tumor fraction estimated by ichorCNA, fragment size distributions, motif-based features including FrEIA score and the Gini Diversity Index, LIONHEART-derived cfDNA tissue/cell-type contribution scores, and DELFI-FTK genome-wide fragmentation features. High-dimensional LIONHEART and DELFI-FTK features are selected using Elastic Net logistic regression within the training cohort only.
+ACT integrates multiple cfDNA feature classes, including tumor fraction estimated by ichorCNA, fragment size distributions, motif-based features including the FrEIA score and Gini Diversity Index, LIONHEART-derived cfDNA tissue/cell-type contribution scores, and DELFI-FTK genome-wide fragmentation features. High-dimensional LIONHEART and DELFI-FTK features are selected using Elastic Net logistic regression within the training cohort only.
 
-The model development framework uses a training cohort and an independent validation cohort. All feature screening, feature selection, hyperparameter tuning, model fitting, and threshold optimization are performed using training data only. The validation cohort is used only for final evaluation.
+The model development framework uses a training cohort and an independent validation cohort. All feature selection, hyperparameter tuning, model fitting, and threshold optimization are performed using training data only. The validation cohort is used only for final evaluation.
 
 ## Repository structure
 
