@@ -36,12 +36,6 @@ conda create -n ACT-ML
 conda activate ACT-ML
 ```
 
-### 4. Install dependencies
-
-```sh
-pip install -r requirements.txt
-```
-
 ### 5. Verify the installation
 
 ```sh
