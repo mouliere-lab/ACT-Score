@@ -6,7 +6,7 @@ ACT score is a machine learning framework for early outcome prediction in large 
 
 ACT stands for:
 
-- **A**: genomic aberrations, represented by tumor fraction estimated from low-pass whole-genome sequencing
+- **A**: genomic aberrations, represented by tumor fraction estimated
 - **C**: cfDNA fragment composition, including fragment size and genome-wide fragmentation features
 - **T**: terminal motif analyses, including fragment-end motif diversity and motif-based scores
 
