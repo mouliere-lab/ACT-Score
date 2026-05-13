@@ -6,9 +6,9 @@ ACT score is a machine learning framework for early outcome prediction in large 
 
 ACT stands for:
 
-- **A**: genomic aberrations, represented by tumor fraction estimated
-- **C**: cfDNA fragment composition, including fragment size and genome-wide fragmentation features
-- **T**: terminal motif analyses, including fragment-end motif diversity and motif-based scores
+- **A**: Aberrations, represented by genomic tumor fraction estimated
+- **C**: Composition of cfDNA fragments including fragment size and genome-wide fragmentation features
+- **T**: Terminal motif analyses, including fragment-end motif diversity and motif-based scores
 
 The pipeline is designed to integrate genomic and fragmentomic features from a single on-treatment plasma sample, typically collected after one cycle of therapy, to identify patients at higher risk of progression.
 
