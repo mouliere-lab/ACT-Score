@@ -12,7 +12,7 @@ ACT stands for:
 
 The pipeline is designed to integrate genomic and fragmentomic features from a single on-treatment plasma sample, typically collected after one cycle of therapy, to identify patients at higher risk of progression.
 
-ACT integrates multiple cfDNA feature classes, including tumor fraction, fragment size distributions, motif-based features, LIONHEART-derived cfDNA tissue/cell-type contribution scores, and DELFI-FTK genome-wide fragmentation features. High-dimensional LIONHEART and DELFI-FTK features are selected using Elastic Net logistic regression within the training cohort only.
+ACT integrates multiple cfDNA feature classes, including tumor fraction estimated by ichorCNA, fragment size distributions, motif-based features including FrEIA score and the Gini Diversity Index, LIONHEART-derived cfDNA tissue/cell-type contribution scores, and DELFI-FTK genome-wide fragmentation features. High-dimensional LIONHEART and DELFI-FTK features are selected using Elastic Net logistic regression within the training cohort only.
 
 The model development framework uses a training cohort and an independent validation cohort. All feature screening, feature selection, hyperparameter tuning, model fitting, and threshold optimization are performed using training data only. The validation cohort is used only for final evaluation.
 
