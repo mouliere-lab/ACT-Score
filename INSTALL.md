@@ -9,8 +9,6 @@ Before installing the ACT-score pipeline, install one of the following:
 
 Alternatively, the pipeline can also be installed using a standard Python virtual environment.
 
-## Option 1: Installation with Conda
-
 ### 1. Clone the repository
 
 ```sh
@@ -49,43 +47,7 @@ python --version
 python -c "import pandas, sklearn, imblearn, joblib; print('Installation successful')"
 ```
 
-## Option 2: Installation with Python venv
 
-If you do not use Conda, you can install the pipeline using `venv`.
-
-### 1. Clone the repository
-
-```sh
-git clone https://github.com/mouliere-lab/ACT-score.git
-cd ACT-score
-```
-
-### 2. Create and activate a virtual environment
-
-```sh
-python3 -m venv .venv
-source .venv/bin/activate
-```
-
-On Windows, use:
-
-```sh
-.venv\Scripts\activate
-```
-
-### 3. Install dependencies
-
-```sh
-pip install --upgrade pip
-pip install -r requirements.txt
-```
-
-### 4. Verify the installation
-
-```sh
-python --version
-python -c "import pandas, sklearn, imblearn, joblib; print('Installation successful')"
-```
 
 ## Install time
 
@@ -101,8 +63,3 @@ For example, with Conda:
 conda activate ACT-ML
 ```
 
-or with `venv`:
-
-```sh
-source .venv/bin/activate
-```
