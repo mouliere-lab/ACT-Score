@@ -3,7 +3,6 @@
 set -euo pipefail
 
 # Activate environment
-source /Users/pmapar/miniconda3/etc/profile.d/conda.sh
 conda activate ACT-ML
 
 # Go to repository root
