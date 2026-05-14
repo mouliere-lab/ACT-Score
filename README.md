@@ -153,8 +153,6 @@ conda env create -f environment.yml
 conda activate ACT-ML
 ```
 
-The Conda environment includes the required Python packages, including `numpy`, `pandas`, `scikit-learn`, `imbalanced-learn`, `joblib`, and `openpyxl`.
-
 ## Running the pipeline
 
 The full workflow has three main steps:
