@@ -19,7 +19,7 @@ CV=5
 CV_STRATEGY="StratifiedKFold"
 SCORING_METHOD="roc_auc"
 RS_MAX=10
-SCALE_STATUS=True
+SCALE_STATUS=False
 
 RESULTS_PATH="results/ACT_score_scale_${SCALE_STATUS}"
 INPUT_FILE="data/example_new_samples.csv"
