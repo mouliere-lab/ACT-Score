@@ -276,12 +276,39 @@ results/ACT_score_scale_True/
 ├── Logistic_Regression/
 │   ├── rs_1/
 │   ├── rs_2/
+│   ├── ...
+│   ├── rs_N/
 │   └── Average/
 ├── Random_Forest/
+│   ├── rs_1/
+│   ├── rs_2/
+│   ├── ...
+│   ├── rs_N/
+│   └── Average/
 ├── Gaussian_Naive_Bayes/
+│   ├── rs_1/
+│   ├── rs_2/
+│   ├── ...
+│   ├── rs_N/
+│   └── Average/
 ├── SVM/
+│   ├── rs_1/
+│   ├── rs_2/
+│   ├── ...
+│   ├── rs_N/
+│   └── Average/
 ├── EasyEnsemble/
+│   ├── rs_1/
+│   ├── rs_2/
+│   ├── ...
+│   ├── rs_N/
+│   └── Average/
 └── Gradient_Boosting/
+    ├── rs_1/
+    ├── rs_2/
+    ├── ...
+    ├── rs_N/
+    └── Average/
 ```
 
 Each random-state folder contains:
@@ -424,7 +451,6 @@ with your own private local file path.
 
 ## Important notes
 
-- Do not rely on row order when combining clinical annotation and feature tables.
 - Always merge or verify samples using a stable identifier such as `subject_id`.
 - The input CSV should have the correct header row. If a table title row is present above the column names, remove it before running the pipeline.
 - Column names are case-sensitive. For example, `2y_ttp` and `2Y_TTP` are different.
