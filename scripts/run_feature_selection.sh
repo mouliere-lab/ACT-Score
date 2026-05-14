@@ -9,7 +9,7 @@ echo "============================================================"
 echo "Activating conda environment: ACT-ML"
 
 # Activate environment
-source activate ACT-ML
+conda activate ACT-ML
 
 # Go to repository root
 # Replace this with the path to your cloned ACT-score repository.
