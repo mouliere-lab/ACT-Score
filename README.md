@@ -310,6 +310,7 @@ results/ACT_score_scale_True/
     ├── rs_N/
     └── Average/
 ```
+Here, `N` represents the number of random seeds used. For example, if `RS_MAX=10` in `scripts/run_train_validate.sh`, each classifier folder will contain `rs_1` through `rs_10`, plus an `Average/` folder. If `RS_MAX=5`, each classifier folder will contain `rs_1` through `rs_5`, plus an `Average/` folder.
 
 Each random-state folder contains:
 
