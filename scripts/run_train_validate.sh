@@ -26,7 +26,10 @@ delfi_feature_file="results/feature_selection/DELFI-FTK_selected_features_min5.c
 
 # Read features from the CSV files
 
-mapfile -t core_features < <(
+core_features=()
+while IFS= read -r feature; do
+    core_features+=("$feature")
+done < <(
 python - <<EOF
 import pandas as pd
 df = pd.read_csv("$core_feature_file")
@@ -35,7 +38,10 @@ for feature in df["feature"].dropna().astype(str):
 EOF
 )
 
-mapfile -t lionheart_features < <(
+lionheart_features=()
+while IFS= read -r feature; do
+    lionheart_features+=("$feature")
+done < <(
 python - <<EOF
 import pandas as pd
 df = pd.read_csv("$lionheart_feature_file")
@@ -44,7 +50,10 @@ for feature in df["feature"].dropna().astype(str):
 EOF
 )
 
-mapfile -t delfi_features < <(
+delfi_features=()
+while IFS= read -r feature; do
+    delfi_features+=("$feature")
+done < <(
 python - <<EOF
 import pandas as pd
 df = pd.read_csv("$delfi_feature_file")
