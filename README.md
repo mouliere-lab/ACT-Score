@@ -438,8 +438,6 @@ Main output files include:
 
 For Logistic Regression, feature coefficients are saved. If feature scaling is enabled, features are ranked by absolute coefficient. If scaling is disabled, features are ranked by the absolute value of coefficient multiplied by feature standard deviation.
 
-## Demo data
-
 ## Input data
 
 The repository includes `data/input_feature_table.csv`, which contains the de-identified feature table used as input for the ACT-score pipeline.
