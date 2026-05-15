@@ -34,7 +34,7 @@ conda create -n ACT-ML python=3.12
 conda activate ACT-ML
 ```
 
-### 6. Verify the installation
+### 4. Verify the installation
 
 ```sh
 python --version
