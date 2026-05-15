@@ -12,7 +12,7 @@ ACT stands for:
 
 The pipeline is designed to integrate genomic and fragmentomic features from a single on-treatment plasma sample, typically collected after one cycle of therapy, to identify patients at higher risk of progression.
 
-ACT integrates multiple cfDNA feature classes, including tumor fraction estimated by ichorCNA, fragment size distributions, motif-based features including the FrEIA score and Gini Diversity Index, LIONHEART-derived cfDNA tissue/cell-type contribution scores, and DELFI-FTK genome-wide fragmentation features. High-dimensional LIONHEART and DELFI-FTK features are selected using Elastic Net logistic regression within the training cohort only.
+ACT integrates multiple cfDNA feature classes, including tumor fraction estimated by ichorCNA, fragment size distributions, motif-based features including the FrEIA score and Motif Diversity Score (MDS), LIONHEART-derived cfDNA tissue/cell-type contribution scores, and DELFI-FTK genome-wide fragmentation features. High-dimensional LIONHEART and DELFI-FTK features are selected using Elastic Net logistic regression within the training cohort only.
 
 The model development framework uses a training cohort and an independent validation cohort. All feature selection, hyperparameter tuning, model fitting, and threshold optimization are performed using training data only. The validation cohort is used only for final evaluation.
 
@@ -272,7 +272,7 @@ Each classifier is trained across multiple random seeds. For each seed, the mode
 Expected output structure:
 
 ```text
-results/ACT_score_scale_True/
+results/ACT_score_scale_False/
 ├── Logistic_Regression/
 │   ├── rs_1/
 │   ├── rs_2/
@@ -327,7 +327,7 @@ You can also run one classifier manually:
 
 ```bash
 python analysis/train_validate.py \
-  --features Gini ichorCNA FrEIA_score "100–120" "120–140" "180–200" \
+  --features MDS ichorCNA FrEIA_score "100–120" "120–140" "180–200" \
   --classifier_name Logistic_Regression \
   --timepoint 1 \
   --file_name_col subject_id \
@@ -340,10 +340,10 @@ python analysis/train_validate.py \
   --scoring_method roc_auc \
   --threshold Optimal \
   --input_file_path data/input_feature_table.csv \
-  --path_to_save_results results/ACT_score_scale_True \
+  --path_to_save_results results/ACT_score_scale_False \
   --rs 1 \
   --nr_jobs 16 \
-  --scale_status True
+  --scale_status False
 ```
 
 Then average results across random seeds:
@@ -355,13 +355,13 @@ python analysis/average_runs.py \
   --outcome_col 2y_ttp \
   --cohort_col cohort \
   --validation_label B \
-  --results-path results/ACT_score_scale_True \
+  --results-path results/ACT_score_scale_False \
   --cv 5 \
   --cv_strategy StratifiedKFold \
   --scoring_method roc_auc \
   --threshold Optimal \
   --rs 10 \
-  --scale_status True
+  --scale_status False
 ```
 
 ## Step 3: Predict new samples
@@ -380,7 +380,7 @@ python analysis/predict_new_samples.py \
   --timepoint 1 \
   --file_name_col subject_id \
   --outcome_col 2y_ttp \
-  --results_path results/ACT_score_scale_True \
+  --results_path results/ACT_score_scale_False \
   --input_file_path data/example_new_samples.csv \
   --output_predictions_path results/new_sample_predictions.csv \
   --output_performance_path results/new_sample_performance.csv \
@@ -388,7 +388,7 @@ python analysis/predict_new_samples.py \
   --cv_strategy StratifiedKFold \
   --scoring_method roc_auc \
   --rs 10 \
-  --scale_status True
+  --scale_status False
 ```
 
 If the new sample file does not contain the outcome column, the script will save predictions only. If the outcome column is present, it will also calculate performance metrics.
