@@ -393,19 +393,6 @@ python analysis/predict_new_samples.py \
 
 If the new sample file does not contain the outcome column, the script will save predictions only. If the outcome column is present, it will also calculate performance metrics.
 
-## Model training details
-
-The pipeline uses repeated model development across random seeds. For each random seed:
-
-1. Training samples are shuffled.
-2. Hyperparameters are optimized using cross-validation within the training cohort.
-3. The model is fitted using training data only.
-4. The classification threshold is optimized using training data only when `threshold=Optimal`.
-5. The trained model is applied to the validation cohort.
-6. Predictions and performance metrics are saved.
-
-Across random seeds, predicted probabilities are averaged, and the optimized thresholds are averaged to generate final binary predictions.
-
 ## Feature selection details
 
 High-dimensional LIONHEART and DELFI-FTK features are selected separately using Elastic Net logistic regression. Feature selection is repeated across random seeds. Features with non-zero coefficients are counted across runs, and features selected at least a user-defined number of times are retained.
@@ -422,6 +409,19 @@ These can be changed using:
 ```text
 --min_times_selected
 ```
+
+## Model training details
+
+The pipeline uses repeated model development across random seeds. For each random seed:
+
+1. Training samples are shuffled.
+2. Hyperparameters are optimized using cross-validation within the training cohort.
+3. The model is fitted using training data only.
+4. The classification threshold is optimized using training data only when `threshold=Optimal`.
+5. The trained model is applied to the validation cohort.
+6. Predictions and performance metrics are saved.
+
+Across random seeds, predicted probabilities are averaged, and the optimized thresholds are averaged to generate final binary predictions.
 
 ## Output files
 
