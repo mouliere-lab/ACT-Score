@@ -440,15 +440,17 @@ For Logistic Regression, feature coefficients are saved. If feature scaling is e
 
 ## Demo data
 
-The repository may include small example CSV files to demonstrate expected input formatting. These files should not contain patient-identifiable or sensitive clinical data.
+## Input data
 
-For real data analysis, replace:
+The repository includes `data/input_feature_table.csv`, which contains the de-identified feature table used as input for the ACT-score pipeline.
+
+This file should contain one row per sample, metadata columns such as `subject_id`, `timepoint`, `cohort`, and `2y_ttp`, and the genomic and fragmentomic feature columns used for model training and validation.
+
+If applying the pipeline to another dataset, replace:
 
 ```text
 data/input_feature_table.csv
 ```
-
-with your own private local file path.
 
 ## Important notes
 
