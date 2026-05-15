@@ -149,7 +149,7 @@ See `INSTALL.md` for full installation instructions.
 Briefly:
 
 ```bash
-conda env create -f environment.yml
+conda env create -f ACT_score.yml
 conda activate ACT-ML
 ```
 
