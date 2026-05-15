@@ -25,7 +25,7 @@ cd ACT-score-main
 ### 2. Create the Conda environment
 
 ```sh
-conda create -n ACT-ML python=3.12
+conda env create -f ACT_score.yml
 ```
 
 ### 3. Activate the environment
