@@ -78,7 +78,7 @@ B = validation cohort
 Example input columns:
 
 ```text
-subject_id,timepoint,cohort,2y_ttp,Gini,ichorCNA,FrEIA_score,100–120,120–140,180–200,...
+subject_id,timepoint,cohort,2y_ttp,MDS,ichorCNA,FrEIA_score,100–120,120–140,180–200,...
 ```
 
 ## Feature-list files
@@ -89,7 +89,7 @@ Example:
 
 ```csv
 feature
-Gini
+MDS
 ichorCNA
 FrEIA_score
 100–120
