@@ -34,13 +34,7 @@ conda create -n ACT-ML python=3.12
 conda activate ACT-ML
 ```
 
-### 4. Install dependencies
-
-```sh
-pip install -r requirements.txt
-```
-
-### 5. Verify the installation
+### 6. Verify the installation
 
 ```sh
 python --version
