@@ -281,7 +281,7 @@ Each classifier is trained across multiple random seeds. For each seed, the mode
 Expected output structure:
 
 ```text
-results/ACT_score_scale_False/
+results/ACT_score/
 ├── Logistic_Regression/
 │   ├── rs_1/
 │   ├── rs_2/
@@ -349,7 +349,7 @@ python analysis/train_validate.py \
   --scoring_method roc_auc \
   --threshold Optimal \
   --input_file_path data/input_feature_table.csv \
-  --path_to_save_results results/ACT_score_scale_False \
+  --path_to_save_results results/ACT_score \
   --rs 1 \
   --nr_jobs 16 \
   --scale_status False
@@ -364,7 +364,7 @@ python analysis/average_runs.py \
   --outcome_col 2y_ttp \
   --cohort_col cohort \
   --validation_label B \
-  --results-path results/ACT_score_scale_False \
+  --results-path results/ACT_score \
   --cv 5 \
   --cv_strategy StratifiedKFold \
   --scoring_method roc_auc \
@@ -389,10 +389,10 @@ python analysis/predict_new_samples.py \
   --timepoint 1 \
   --file_name_col subject_id \
   --outcome_col 2y_ttp \
-  --results_path results/ACT_score_scale_False \
+  --results_path results/ACT_score \
   --input_file_path data/example_new_samples.csv \
-  --output_predictions_path results/new_sample_predictions.csv \
-  --output_performance_path results/new_sample_performance.csv \
+  --output_predictions_path results/new_samples/new_sample_predictions.csv \
+  --output_performance_path results/new_samples/new_sample_performance.csv \
   --cv 5 \
   --cv_strategy StratifiedKFold \
   --scoring_method roc_auc \
