@@ -100,7 +100,7 @@ NR_JOBS=16
 SCALE_STATUS=False
 
 RUN_NAME="ACT_score"
-RESULTS_DIR="results/${RUN_NAME}_scale_${SCALE_STATUS}"
+RESULTS_DIR="results/${RUN_NAME}"
 
 mkdir -p "$RESULTS_DIR"
 mkdir -p logs
