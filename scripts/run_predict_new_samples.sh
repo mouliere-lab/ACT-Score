@@ -30,6 +30,17 @@ SCALE_STATUS=False
 RESULTS_PATH="results/ACT_score"
 INPUT_FILE="data/example_new_samples.csv"
 
+if [ ! -d "$RESULTS_PATH" ]; then
+    echo "Error: trained model/results directory not found: $RESULTS_PATH"
+    echo "Please run scripts/run_train_validate.sh first."
+    exit 1
+fi
+
+if [ ! -f "$INPUT_FILE" ]; then
+    echo "Error: input file not found: $INPUT_FILE"
+    exit 1
+fi
+
 OUTPUT_DIR="results/new_samples"
 mkdir -p "$OUTPUT_DIR"
 
