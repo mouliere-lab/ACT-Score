@@ -1,5 +1,28 @@
 # ACT-score
 
+## Table of contents
+
+- [Overview](#overview)
+- [Repository structure](#repository-structure)
+- [Input data format](#input-data-format)
+- [Feature-list files](#feature-list-files)
+- [System requirements](#system-requirements)
+  - [Operating systems](#operating-systems)
+  - [Python version](#python-version)
+  - [Hardware](#hardware)
+- [Installation](#installation)
+- [Running the pipeline](#running-the-pipeline)
+  - [Step 1: Feature selection](#step-1-feature-selection)
+  - [Step 2: Train and validate ACT models](#step-2-train-and-validate-act-models)
+  - [Step 3: Predict new samples](#step-3-predict-new-samples)
+- [Feature selection details](#feature-selection-details)
+- [Model training details](#model-training-details)
+- [Output files](#output-files)
+- [Input data](#input-data)
+- [Important notes](#important-notes)
+- [Citation](#citation)
+- [License](#license)
+- 
 ## Overview
 
 ACT score is a machine learning framework for early outcome prediction in large B-cell lymphoma (LBCL), including diffuse large B-cell lymphoma (DLBCL), using plasma cell-free DNA (cfDNA) collected during first-line treatment.
