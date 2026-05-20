@@ -480,11 +480,7 @@ run:
 conda init bash
 ```
 
-then close and reopen your terminal, activate the environment again, and run the pipeline from the project directory:
-
-```bash
-conda activate ACT-ML
-cd /path/to/ACT-score
+then close and reopen your terminal, activate the environment again, and run the pipeline from the project directory.
 
 ## Citation
 
