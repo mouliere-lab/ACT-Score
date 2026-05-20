@@ -15,10 +15,6 @@ if [ "${CONDA_DEFAULT_ENV:-}" != "ACT-ML" ]; then
     exit 1
 fi
 
-# Go to repository root
-# Replace this with the path to your cloned ACT-score repository.
-cd /path/to/ACT-score
-
 # User settings
 INPUT_FILE="data/input_feature_table.csv"
 FEATURE_LIST_DIR="data/feature_lists"
