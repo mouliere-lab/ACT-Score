@@ -458,6 +458,7 @@ If applying the pipeline to another dataset, replace:
 ```text
 data/input_feature_table.csv
 ```
+with your own input feature table.
 
 ## Important notes
 
@@ -467,6 +468,23 @@ data/input_feature_table.csv
 - Outcome values must be exactly `Yes` and `No`.
 - Cohort labels must match the values passed through `--training_label` and `--validation_label`.
 - For reproducible comparisons across machines, use the same input files, feature-list files, package versions, and random seeds. Numerical differences can still occur across systems because of different low-level math libraries or parallel execution.
+- If you encounter the following Conda error:
+
+```bash
+CondaError: Run 'conda init' before 'conda activate'
+```
+
+run:
+
+```bash
+conda init bash
+```
+
+then close and reopen your terminal, activate the environment again, and run the pipeline from the project directory:
+
+```bash
+conda activate ACT-ML
+cd /path/to/ACT-score
 
 ## Citation
 
