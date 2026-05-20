@@ -69,12 +69,6 @@ initialize Conda for your shell, for example:
 conda init bash
 ```
 
-or, if you use zsh:
-
-```sh
-conda init zsh
-```
-
 Then close and reopen your terminal and activate the environment again:
 
 ```sh
