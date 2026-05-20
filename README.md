@@ -155,6 +155,15 @@ conda activate ACT-ML
 
 ## Running the pipeline
 
+Before running any pipeline scripts, activate the Conda environment and move to the project directory:
+
+```bash
+conda activate ACT-ML
+cd /path/to/ACT-score
+```
+
+All commands below assume that they are run from the root of the `ACT-score` repository.
+
 The full workflow has three main steps:
 
 1. Run feature selection for LIONHEART and DELFI-FTK features.
