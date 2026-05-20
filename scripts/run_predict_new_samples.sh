@@ -58,3 +58,11 @@ python analysis/predict_new_samples.py \
   --scoring_method "$SCORING_METHOD" \
   --rs "$RS_MAX" \
   --scale_status "$SCALE_STATUS"
+
+echo "Prediction completed successfully."
+echo "Predictions saved to: $OUTPUT_PREDICTIONS"
+if [ -f "$OUTPUT_PERFORMANCE" ]; then
+    echo "Performance metrics saved to: $OUTPUT_PERFORMANCE"
+else
+    echo "No performance metrics file was created. This is expected if the input file does not contain the outcome column '$OUTCOME_COL'."
+fi
