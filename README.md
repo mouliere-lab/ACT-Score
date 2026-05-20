@@ -22,7 +22,7 @@
 - [Important notes](#important-notes)
 - [Citation](#citation)
 - [License](#license)
-- 
+  
 ## Overview
 
 ACT score is a machine learning framework for early outcome prediction in large B-cell lymphoma (LBCL), including diffuse large B-cell lymphoma (DLBCL), using plasma cell-free DNA (cfDNA) collected during first-line treatment.
