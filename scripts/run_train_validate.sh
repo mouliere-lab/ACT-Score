@@ -11,9 +11,6 @@ if [ "${CONDA_DEFAULT_ENV:-}" != "ACT-ML" ]; then
     exit 1
 fi
 
-# Go to repository root
-cd /path/to/ACT-score
-
 # Classifiers
 classifiers=(
   "Logistic_Regression"
@@ -30,8 +27,33 @@ core_feature_file="data/feature_lists/core_features.csv"
 lionheart_feature_file="results/feature_selection/LIONHEART_selected_features_min1.csv"
 delfi_feature_file="results/feature_selection/DELFI-FTK_selected_features_min5.csv"
 
-# Read features from the CSV files
+# Inputs
+INPUT_FILE="data/input_feature_table.csv"
 
+# Check input files
+if [ ! -f "$INPUT_FILE" ]; then
+    echo "Error: input file not found: $INPUT_FILE"
+    exit 1
+fi
+
+if [ ! -f "$core_feature_file" ]; then
+    echo "Error: core feature file not found: $core_feature_file"
+    exit 1
+fi
+
+if [ ! -f "$lionheart_feature_file" ]; then
+    echo "Error: LIONHEART selected feature file not found: $lionheart_feature_file"
+    echo "Please run scripts/run_feature_selection.sh first."
+    exit 1
+fi
+
+if [ ! -f "$delfi_feature_file" ]; then
+    echo "Error: DELFI-FTK selected feature file not found: $delfi_feature_file"
+    echo "Please run scripts/run_feature_selection.sh first."
+    exit 1
+fi
+
+# Read features from the CSV files
 core_features=()
 while IFS= read -r feature; do
     core_features+=("$feature")
@@ -79,9 +101,6 @@ if [ "${#features[@]}" -eq 0 ]; then
     echo "Error: no features were loaded. Check feature-list CSV files."
     exit 1
 fi
-
-# Inputs
-INPUT_FILE="data/input_feature_table.csv"
 
 # Run settings
 TIMEPOINT=1
@@ -156,3 +175,4 @@ for classifier_name in "${classifiers[@]}"; do
 done
 
 echo "All classifiers completed."
+echo "Results saved in: $RESULTS_DIR"
