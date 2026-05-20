@@ -6,10 +6,14 @@ echo "============================================================"
 echo "Starting ACT feature selection"
 echo "============================================================"
 
-echo "Activating conda environment: ACT-ML"
+echo "Using active Conda environment: ${CONDA_DEFAULT_ENV:-none}"
 
-# Activate environment
-conda activate ACT-ML
+if [ "${CONDA_DEFAULT_ENV:-}" != "ACT-ML" ]; then
+    echo "Error: expected Conda environment 'ACT-ML', but current environment is '${CONDA_DEFAULT_ENV:-none}'."
+    echo "Please activate the environment before running this script:"
+    echo "conda activate ACT-ML"
+    exit 1
+fi
 
 # Go to repository root
 # Replace this with the path to your cloned ACT-score repository.
