@@ -11,9 +11,6 @@ if [ "${CONDA_DEFAULT_ENV:-}" != "ACT-ML" ]; then
     exit 1
 fi
 
-# Go to repository root
-cd /path/to/ACT-score
-
 # Settings
 CLASSIFIER_NAME="Logistic_Regression"
 
