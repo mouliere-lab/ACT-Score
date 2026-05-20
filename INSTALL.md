@@ -33,6 +33,7 @@ conda env create -f ACT_score.yml
 ```sh
 conda activate ACT-ML
 ```
+All commands should be run from the root of the `ACT-score` repository. If you cloned the repository as described above, you should already be in the correct directory.
 
 ### 4. Verify the installation
 
@@ -41,19 +42,44 @@ python --version
 python -c "import pandas, sklearn, imblearn, joblib; print('Installation successful')"
 ```
 
-
-
 ## Install time
 
 Installation typically takes about 5 to 10 minutes on a standard desktop computer, depending on internet speed and whether Python dependencies are already cached.
 
 ## Notes
 
-The bash scripts in the `scripts/` directory assume that the environment is called `ACT-ML`. If you use a different environment name, update the activation line in the scripts accordingly.
+The pipeline scripts assume that they are run from the root of the `ACT-score` repository and that the Conda environment has already been activated.
 
-For example, with Conda:
+Before running any pipeline script, make sure you are in the project directory and the environment is active:
+
+```sh
+conda activate ACT-ML
+cd /path/to/ACT-score
+```
+
+If you encounter the following error:
+
+```sh
+CondaError: Run 'conda init' before 'conda activate'
+```
+
+initialize Conda for your shell, for example:
+
+```sh
+conda init bash
+```
+
+or, if you use zsh:
+
+```sh
+conda init zsh
+```
+
+Then close and reopen your terminal and activate the environment again:
 
 ```sh
 conda activate ACT-ML
 ```
+
+If you created the environment with a different name, activate that environment instead of `ACT-ML`.
 
