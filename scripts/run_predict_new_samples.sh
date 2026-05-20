@@ -2,8 +2,14 @@
 
 set -euo pipefail
 
-# Activate environment
-conda activate ACT-ML
+echo "Using active Conda environment: ${CONDA_DEFAULT_ENV:-none}"
+
+if [ "${CONDA_DEFAULT_ENV:-}" != "ACT-ML" ]; then
+    echo "Error: expected Conda environment 'ACT-ML', but current environment is '${CONDA_DEFAULT_ENV:-none}'."
+    echo "Please activate the environment before running this script:"
+    echo "conda activate ACT-ML"
+    exit 1
+fi
 
 # Go to repository root
 cd /path/to/ACT-score
