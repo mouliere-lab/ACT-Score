@@ -75,5 +75,4 @@ Then close and reopen your terminal and activate the environment again:
 conda activate ACT-ML
 ```
 
-If you created the environment with a different name, activate that environment instead of `ACT-ML`.
-
+The environment should be named `ACT-ML`, as defined in `ACT_score.yml`. The pipeline scripts assume this environment name.
