@@ -17,8 +17,8 @@
   - [Step 3: Predict new samples](#step-3-predict-new-samples)
 - [Feature selection details](#feature-selection-details)
 - [Model training details](#model-training-details)
-- [Output files](#output-files)
 - [Input data](#input-data)
+- [Output files](#output-files)
 - [Important notes](#important-notes)
 - [Citation](#citation)
 - [License](#license)
@@ -455,6 +455,19 @@ The pipeline uses repeated model development across random seeds. For each rando
 
 Across random seeds, predicted probabilities are averaged, and the optimized thresholds are averaged to generate final binary predictions.
 
+## Input data
+
+The repository includes `data/input_feature_table.csv`, which contains the de-identified feature table used as input for the ACT-score pipeline.
+
+This file should contain one row per sample, metadata columns such as `subject_id`, `timepoint`, `cohort`, and `2y_ttp`, and the genomic and fragmentomic feature columns used for model training and validation.
+
+If applying the pipeline to another dataset, replace:
+
+```text
+data/input_feature_table.csv
+```
+with your own input feature table.
+
 ## Output files
 
 Main output files include:
@@ -469,19 +482,6 @@ Main output files include:
 ```
 
 For Logistic Regression, feature coefficients are saved. If feature scaling is enabled, features are ranked by absolute coefficient. If scaling is disabled, features are ranked by the absolute value of coefficient multiplied by feature standard deviation.
-
-## Input data
-
-The repository includes `data/input_feature_table.csv`, which contains the de-identified feature table used as input for the ACT-score pipeline.
-
-This file should contain one row per sample, metadata columns such as `subject_id`, `timepoint`, `cohort`, and `2y_ttp`, and the genomic and fragmentomic feature columns used for model training and validation.
-
-If applying the pipeline to another dataset, replace:
-
-```text
-data/input_feature_table.csv
-```
-with your own input feature table.
 
 ## Important notes
 
