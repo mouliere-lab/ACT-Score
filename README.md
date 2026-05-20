@@ -23,7 +23,7 @@ ACT-score/
 ├── analysis/              # Command-line Python scripts
 ├── src/                   # Reusable pipeline functions
 ├── scripts/               # Bash scripts for running the workflow
-├── data/                  # Example input files and feature lists
+├── data/                  # Input files and feature lists
 ├── results/               # Output directory
 ├── ACT_score.yml          # Conda environment file
 ├── INSTALL.md             # Installation instructions
