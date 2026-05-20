@@ -27,11 +27,14 @@ SCORING_METHOD="roc_auc"
 RS_MAX=10
 SCALE_STATUS=False
 
-RESULTS_PATH="results/ACT_score_scale_${SCALE_STATUS}"
+RESULTS_PATH="results/ACT_score"
 INPUT_FILE="data/example_new_samples.csv"
 
-OUTPUT_PREDICTIONS="results/new_sample_predictions.csv"
-OUTPUT_PERFORMANCE="results/new_sample_performance.csv"
+OUTPUT_DIR="results/new_samples"
+mkdir -p "$OUTPUT_DIR"
+
+OUTPUT_PREDICTIONS="$OUTPUT_DIR/new_sample_predictions.csv"
+OUTPUT_PERFORMANCE="$OUTPUT_DIR/new_sample_performance.csv"
 
 python analysis/predict_new_samples.py \
   --classifier_name "$CLASSIFIER_NAME" \
