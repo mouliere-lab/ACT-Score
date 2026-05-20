@@ -25,7 +25,7 @@ ACT-score/
 ├── scripts/               # Bash scripts for running the workflow
 ├── data/                  # Example input files and feature lists
 ├── results/               # Output directory
-├── environment.yml        # Conda environment file
+├── ACT_score.yml          # Conda environment file
 ├── INSTALL.md             # Installation instructions
 └── README.md
 ```
