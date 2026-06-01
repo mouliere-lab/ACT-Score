@@ -507,7 +507,9 @@ then close and reopen your terminal, activate the environment again, and run the
 
 ## Citation
 
-If you use this pipeline, please cite the associated manuscript.
+If you use this pipeline, please cite:
+
+Wang et al. Cell-Free DNA Genomic and Fragmentomic Features for Early Outcome Prediction in Diffuse Large B-Cell Lymphoma. medRxiv. 2026. doi:10.64898/2026.05.29.26353426
 
 ## License
 
