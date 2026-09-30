@@ -509,7 +509,7 @@ then close and reopen your terminal, activate the environment again, and run the
 
 If you use this pipeline, please cite:
 
-Wang et al. Cell-Free DNA Genomic and Fragmentomic Features for Early Outcome Prediction in Diffuse Large B-Cell Lymphoma. medRxiv. 2026. doi:10.64898/2026.05.29.26353426
+Wang S, Mapar P, Moldovan N, et al. Cell-free DNA genomic and fragmentomic features for early outcome prediction in large B cell lymphoma. Cell Reports Medicine. 2026;7(9):103006. DOI: 10.1016/j.xcrm.2026.103006
 
 ## License
 
